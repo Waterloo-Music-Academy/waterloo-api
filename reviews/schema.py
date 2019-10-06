@@ -8,10 +8,10 @@ from .models import Review
 class ReviewNode(DjangoObjectType):
     class Meta:
         model = Review
-        filter_fields = ['id', 'authors', 'rating', 'album', 'standfirst', 'body', 'created_at']
+        filter_fields = ['authors', 'rating', 'album', 'standfirst', 'body', 'created_at']
         interfaces = (relay.Node,)
 
 
 class Query(ObjectType):
     review = relay.Node.Field(ReviewNode)
-    all_reviews = DjangoFilterConnectionField(ReviewNode)
+    reviews = DjangoFilterConnectionField(ReviewNode)

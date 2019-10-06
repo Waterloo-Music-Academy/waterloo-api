@@ -8,10 +8,10 @@ from .models import Article
 class ArticleNode(DjangoObjectType):
     class Meta:
         model = Article
-        filter_fields = ['id', 'authors', 'title', 'standfirst', 'body', 'created_at', 'frontpage']
+        filter_fields = ['authors', 'title', 'standfirst', 'body', 'created_at', 'frontpage']
         interfaces = (relay.Node,)
 
 
 class Query(ObjectType):
     article = relay.Node.Field(ArticleNode)
-    all_articles = DjangoFilterConnectionField(ArticleNode)
+    articles = DjangoFilterConnectionField(ArticleNode)

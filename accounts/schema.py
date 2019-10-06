@@ -8,10 +8,10 @@ from .models import User
 class UserNode(DjangoObjectType):
     class Meta:
         model = User
-        filter_fields = ['id', 'name', 'bio', 'is_staff', 'articles', 'reviews']
+        filter_fields = ['name', 'bio', 'is_staff', 'articles', 'reviews']
         interfaces = (relay.Node,)
 
 
 class Query(ObjectType):
     user = relay.Node.Field(UserNode)
-    all_users = DjangoFilterConnectionField(UserNode)
+    users = DjangoFilterConnectionField(UserNode)
