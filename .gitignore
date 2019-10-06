@@ -117,3 +117,5 @@ venv.bak/
 media/
 
 .c9/
+
+schema.json
