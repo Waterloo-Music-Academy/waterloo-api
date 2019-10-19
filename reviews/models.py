@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from django.utils.crypto import get_random_string
 
 from accounts.models import User
 from music.models import Album
@@ -18,7 +17,6 @@ class Review(models.Model):
         ('D', 'D'),
         ('F', 'F')
     )
-    id = models.CharField(primary_key=True, default=get_random_string, editable=False, max_length=8)
     authors = models.ManyToManyField(User, related_name='reviews')
     rating = models.CharField(max_length=2, choices=RATINGS, default='F')
     album = models.OneToOneField(Album, related_name='review', on_delete=models.CASCADE)

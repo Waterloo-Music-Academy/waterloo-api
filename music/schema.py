@@ -1,4 +1,4 @@
-from graphene import relay, ObjectType
+from graphene import ObjectType, Node
 from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 
@@ -9,39 +9,39 @@ class GenreNode(DjangoObjectType):
     class Meta:
         model = Genre
         filter_fields = ['name', 'artists', 'albums']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
 class LabelNode(DjangoObjectType):
     class Meta:
         model = Label
         filter_fields = ['name', 'artists', 'albums']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
 class ArtistNode(DjangoObjectType):
     class Meta:
         model = Artist
         filter_fields = ['name', 'bio', 'deans_list', 'labels', 'genres', 'albums']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
 class AlbumNode(DjangoObjectType):
     class Meta:
         model = Album
         filter_fields = ['name', 'artists', 'genres', 'labels', 'release_date']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
-class Query(ObjectType):
-    genre = relay.Node.Field(GenreNode)
+class MusicQuery(ObjectType):
+    genre = Node.Field(GenreNode)
     genres = DjangoFilterConnectionField(GenreNode)
 
-    label = relay.Node.Field(LabelNode)
+    label = Node.Field(LabelNode)
     labels = DjangoFilterConnectionField(LabelNode)
 
-    artist = relay.Node.Field(ArtistNode)
+    artist = Node.Field(ArtistNode)
     artists = DjangoFilterConnectionField(ArtistNode)
 
-    album = relay.Node.Field(AlbumNode)
+    album = Node.Field(AlbumNode)
     albums = DjangoFilterConnectionField(AlbumNode)

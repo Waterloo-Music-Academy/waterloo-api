@@ -6,9 +6,9 @@ import news.schema
 import reviews.schema
 
 
-class Query(accounts.schema.Query, music.schema.Query,
-            news.schema.Query, reviews.schema.Query, graphene.ObjectType):
-    pass
+class RootQuery(accounts.schema.AccountsQuery, music.schema.MusicQuery,
+                news.schema.NewsQuery, reviews.schema.ReviewsQuery, graphene.ObjectType):
+    node = graphene.relay.Node.Field()
 
 
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=RootQuery)

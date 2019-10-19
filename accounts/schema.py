@@ -1,4 +1,4 @@
-from graphene import relay, ObjectType
+from graphene import ObjectType, Node
 from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 
@@ -9,9 +9,9 @@ class UserNode(DjangoObjectType):
     class Meta:
         model = User
         filter_fields = ['name', 'bio', 'is_staff', 'articles', 'reviews']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
-class Query(ObjectType):
-    user = relay.Node.Field(UserNode)
+class AccountsQuery(ObjectType):
+    user = Node.Field(UserNode)
     users = DjangoFilterConnectionField(UserNode)

@@ -1,4 +1,4 @@
-from graphene import relay, ObjectType
+from graphene import ObjectType, Node
 from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 
@@ -9,9 +9,9 @@ class ReviewNode(DjangoObjectType):
     class Meta:
         model = Review
         filter_fields = ['authors', 'rating', 'album', 'standfirst', 'body', 'created_at']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
-class Query(ObjectType):
-    review = relay.Node.Field(ReviewNode)
+class ReviewsQuery(ObjectType):
+    review = Node.Field(ReviewNode)
     reviews = DjangoFilterConnectionField(ReviewNode)

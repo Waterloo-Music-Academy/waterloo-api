@@ -1,4 +1,4 @@
-from graphene import relay, ObjectType
+from graphene import ObjectType, Node
 from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 
@@ -9,9 +9,9 @@ class ArticleNode(DjangoObjectType):
     class Meta:
         model = Article
         filter_fields = ['authors', 'title', 'standfirst', 'body', 'created_at', 'frontpage']
-        interfaces = (relay.Node,)
+        interfaces = (Node,)
 
 
-class Query(ObjectType):
-    article = relay.Node.Field(ArticleNode)
+class NewsQuery(ObjectType):
+    article = Node.Field(ArticleNode)
     articles = DjangoFilterConnectionField(ArticleNode)

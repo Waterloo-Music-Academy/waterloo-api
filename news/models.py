@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils.text import slugify
 from django.utils.crypto import get_random_string
+from django.utils.text import slugify
 
 from accounts.models import User
 
@@ -21,10 +21,6 @@ class Article(models.Model):
 
     def article_authors(self):
         return "\n".join([a.name for a in self.authors.all()])
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Article, self).save(self, *args, **kwargs)
 
     def __str__(self):
         return self.title
