@@ -26,7 +26,7 @@ SECRET_KEY = 'lorem ipsum' if ENVIRONMENT == 'development' else os.environ['SECR
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if ENVIRONMENT == 'production' else True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'debian']
 
 # Application definition
 
